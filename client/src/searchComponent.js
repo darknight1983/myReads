@@ -1,5 +1,8 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import Book from './bookComponent';
 
 export default class SearchComp extends Component {
   constructor(props) {
@@ -23,6 +26,8 @@ export default class SearchComp extends Component {
     }
   }
   render() {
+    const { books } = this.props;
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -45,9 +50,23 @@ export default class SearchComp extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          <ol className="books-grid">
+            {books.length > 0 ? books.map(book => (
+              <Book
+                key={book.id}
+                title={book.title}
+                authors={book.authors}
+                imageLinks={book.imageLinks}/>
+            )) : <li>No books available</li>}
+
+          </ol>
         </div>
       </div>
     )
   }
+}
+
+SearchComp.propTypes = {
+  findBook: PropTypes.func.isRequired,
+  books: PropTypes.array.isRequired
 }

@@ -1,5 +1,0 @@
-{this.state.showSearchPage ? (
-  <SearchComp />
-) : (
-  
-)}
