@@ -8,7 +8,7 @@ export default function BookShelf(props) {
       <div className="bookshelf-books">
         <ol className="books-grid">
           <Book />
-
+            
         </ol>
       </div>
     </div>

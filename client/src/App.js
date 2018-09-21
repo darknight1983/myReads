@@ -12,22 +12,29 @@ class BooksApp extends React.Component {
 
     this.state = {
       books: [],
+      newBooks: [], // Holds books that are added to a shelf.
       categories: ['Currently Reading', 'Want to Read', 'Read']
     }
     this.searchBookApi = this.searchBookApi.bind(this)
   }
 
+  componentDidMount() {
+    BooksAPI.getAll().then(books => (
+      this.setState({ books })
+    ))
+  }
+
   searchBookApi(searchTerm) {
     BooksAPI.search(searchTerm).then((books) => {
       if (!books.length) {
-        this.setState({ books: []})
+        this.setState({ newBooks: []})
       }
-      this.setState({ books })
+      this.setState({ newBooks: books })
     })
     .catch(err => console.log)
   }
   render() {
-    const { books, categories } = this.state;
+    const { newBooks, categories, books } = this.state;
     return (
       <div className="app">
         <Route exact path='/' render={() => (
@@ -38,7 +45,10 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <div>
                 {categories.map((category, i) => (
-                  <BookShelf category={category} key={i}/>
+                  <BookShelf
+                    category={category}
+                    key={i}
+                    books={books}/>
                 ))}
 
               </div>
@@ -53,7 +63,7 @@ class BooksApp extends React.Component {
         <Route path="/Search" render={() => (
             <SearchComp
               findBook={this.searchBookApi}
-              books={ books }/>
+              books={ newBooks }/>
           )} />
 
       </div>
