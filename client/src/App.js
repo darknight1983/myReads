@@ -3,8 +3,8 @@ import { Link, Route } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchComp from './searchComponent';
-import BookShelf from './bookShelfComp';
-import Book from './bookComponent'
+import BookList from './bookListComp';
+// import Book from './bookComponent'
 
 class BooksApp extends React.Component {
   constructor(props) {
@@ -12,8 +12,7 @@ class BooksApp extends React.Component {
 
     this.state = {
       books: [],
-      newBooks: [], // Holds books that are added to a shelf.
-      categories: ['Currently Reading', 'Want to Read', 'Read']
+      newBooks: [] // Holds books that are added to a shelf.
     }
     this.searchBookApi = this.searchBookApi.bind(this)
   }
@@ -27,7 +26,7 @@ class BooksApp extends React.Component {
 
   updateCategory(book, shelf) {
     BooksAPI.update().then(books => {
-      console.log(books) 
+      console.log(books)
     })
   }
 
@@ -49,17 +48,11 @@ class BooksApp extends React.Component {
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
-            <div className="list-books-content">
-              <div>
-                {categories.map((category, i) => (
-                  <BookShelf
-                    category={category}
-                    key={i}
-                    books={books}/>
-                ))}
+            // BookList component goes here
+            <BookList
+              books={books}
+              updateCategory={this.updateCategory}/>
 
-              </div>
-            </div>
             <div className="open-search">
               <Link to='/search'>Add a Book</Link>
             </div>

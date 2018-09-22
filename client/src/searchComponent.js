@@ -54,6 +54,7 @@ export default class SearchComp extends Component {
             {books.length > 0 ? books.map(book => (
               <Book
                 key={book.id}
+                book={book}
                 title={book.title}
                 authors={book.authors}
                 imageLinks={book.imageLinks}/>
