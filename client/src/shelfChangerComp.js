@@ -1,4 +1,5 @@
 import React,{ Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class ShelfChanger extends Component {
   constructor(props) {
@@ -30,4 +31,9 @@ export default class ShelfChanger extends Component {
       </div>
     )
   }
+}
+
+ShelfChanger.propTypes = {
+  book: PropTypes.object.isRequired,
+  changeShelf: PropTypes.func.isRequired
 }

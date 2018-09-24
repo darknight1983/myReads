@@ -37,3 +37,8 @@ export default class BookList extends Component {
     )
   }
 }
+
+BookList.propTypes = {
+  books: PropTypes.array.isRequired,
+  updateCategory: PropTypes.func.isRequired
+}
