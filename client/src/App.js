@@ -4,6 +4,7 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchComp from './searchComponent';
 import BookList from './bookListComp';
+
 // import Book from './bookComponent'
 
 class BooksApp extends React.Component {
@@ -16,6 +17,8 @@ class BooksApp extends React.Component {
     }
     this.searchBookApi = this.searchBookApi.bind(this)
     this.updateCategory = this.updateCategory.bind(this)
+
+
   }
 
   componentDidMount() {
@@ -25,8 +28,9 @@ class BooksApp extends React.Component {
   }
 
   updateCategory(book, shelf) {
-    BooksAPI.update(book, shelf).then(books => {
-      console.log(books)
+    BooksAPI.update(book, shelf).then(book => {
+      // Redirect to home page.
+      
     })
 
   }

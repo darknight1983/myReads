@@ -6,7 +6,7 @@ export default class ShelfChanger extends Component {
     super(props)
 
     this.state = {
-      value: 'none'
+      value: ''
     }
 
     this.handleChange = this.handleChange.bind(this)

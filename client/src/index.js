@@ -5,5 +5,13 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory();
+
+
+
+
+
+ReactDOM.render(<BrowserRouter history={history}><App /></BrowserRouter>, document.getElementById('root'));
 registerServiceWorker();
