@@ -26,7 +26,7 @@ export default class SearchComp extends Component {
     }
   }
   render() {
-    const { books } = this.props;
+    const { books, updateCategory } = this.props;
 
     return (
       <div className="search-books">
@@ -57,7 +57,8 @@ export default class SearchComp extends Component {
                 book={book}
                 title={book.title}
                 authors={book.authors}
-                imageLinks={book.imageLinks}/>
+                imageLinks={book.imageLinks}
+                changeShelf={updateCategory}/>
             )) : <li>No books available</li>}
 
           </ol>

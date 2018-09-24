@@ -14,7 +14,7 @@ export default class ShelfChanger extends Component {
 
   handleChange(e) {
     this.setState({ value: e.target.value})
-    console.log(this.props.book) // Checking for function on props object
+    this.props.changeShelf(this.props.book, e.target.value)
   }
 
   render() {

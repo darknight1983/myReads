@@ -15,19 +15,20 @@ class BooksApp extends React.Component {
       newBooks: [] // Holds books that are added to a shelf.
     }
     this.searchBookApi = this.searchBookApi.bind(this)
+    this.updateCategory = this.updateCategory.bind(this)
   }
 
   componentDidMount() {
     BooksAPI.getAll().then(books => {
       this.setState({ books })
-      console.log(this.state.books)
     })
   }
 
   updateCategory(book, shelf) {
-    BooksAPI.update().then(books => {
+    BooksAPI.update(book, shelf).then(books => {
       console.log(books)
     })
+
   }
 
   searchBookApi(searchTerm) {
@@ -40,7 +41,7 @@ class BooksApp extends React.Component {
     .catch(err => console.log)
   }
   render() {
-    const { newBooks, categories, books } = this.state;
+    const { newBooks, books } = this.state;
     return (
       <div className="app">
         <Route exact path='/' render={() => (
@@ -63,7 +64,8 @@ class BooksApp extends React.Component {
         <Route path="/Search" render={() => (
             <SearchComp
               findBook={this.searchBookApi}
-              books={ newBooks }/>
+              books={ newBooks }
+              updateCategory={this.updateCategory}/>
           )} />
 
       </div>
