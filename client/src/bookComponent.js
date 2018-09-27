@@ -17,13 +17,13 @@ export default class Book extends Component {
 
   render() {
     const coverImg = this.props.imageLinks && this.props.imageLinks.smallThumbnail ? this.props.imageLinks.smallThumbnail : 'https://via.placeholder.com/128x193'
-    const { book } = this.props
+    const { book, status } = this.props
     return (
       <li>
         <div className="book">
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${coverImg})` }}></div>
-            <ShelfChanger changeShelf={this.props.changeShelf} book={book}/>
+            <ShelfChanger changeShelf={this.props.changeShelf} book={book} status={status}/>
           </div>
           <div className="book-title">{this.props.title}</div>
           <div className="book-authors">{this.props.authors}</div>

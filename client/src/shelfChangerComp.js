@@ -19,9 +19,11 @@ export default class ShelfChanger extends Component {
   }
 
   render() {
+    const { status } = this.props
+
     return (
       <div className="book-shelf-changer">
-        <select value={this.state.value} onChange={this.handleChange}>
+        <select value={status ||this.state.value} onChange={this.handleChange}>
           <option value="#" disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>
@@ -35,5 +37,6 @@ export default class ShelfChanger extends Component {
 
 ShelfChanger.propTypes = {
   book: PropTypes.object.isRequired,
-  changeShelf: PropTypes.func.isRequired
+  changeShelf: PropTypes.func.isRequired,
+  status: PropTypes.string
 }

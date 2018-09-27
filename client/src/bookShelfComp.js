@@ -16,7 +16,8 @@ export default function BookShelf(props) {
               title={book.title}
               authors={book.authors}
               imageLinks={book.imageLinks}
-              changeShelf={props.updateCategory}/>
+              changeShelf={props.updateCategory}
+              status={book.shelf}/>
           ))}
         </ol>
       </div>
