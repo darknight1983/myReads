@@ -15,6 +15,7 @@ export default class SearchComp extends Component {
     }
 
     this.handleSearch = this.handleSearch.bind(this)
+    // Wrap handleRequest with lodash debounce() to update search feature
     this.handleRequest = debounce(this.handleRequest.bind(this), 300)
 
   }
@@ -25,9 +26,6 @@ export default class SearchComp extends Component {
     console.log(this.state.searchTerm)
   }
   handleRequest(e) {
-    // if (e.charCode === 13) {
-    //
-    // }
     this.props.findBook(this.state.searchTerm)
   }
   render() {
@@ -38,14 +36,6 @@ export default class SearchComp extends Component {
         <div className="search-books-bar">
           <Link className='close-search' to='/'>Close</Link>
           <div className="search-books-input-wrapper">
-            {/*
-              NOTES: The search from BooksAPI is limited to a particular set of search terms.
-              You can find these search terms here:
-              https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-              However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-              you don't find a specific author or title. Every search is limited by search terms.
-            */}
-
               <input
                  type="text"
                  placeholder="Search by title or author"
@@ -53,9 +43,6 @@ export default class SearchComp extends Component {
                  onChange={this.handleSearch}
                  onKeyPress={this.handleRequest}
                  />
-
-
-
           </div>
         </div>
         <div className="search-books-results">
