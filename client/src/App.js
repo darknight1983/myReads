@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Redirect } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchComp from './searchComponent';
 import BookList from './bookListComp';
+import SingleBook from './singleBookComp';
 // import Book from './bookComponent'
 
 class BooksApp extends React.Component {
@@ -12,10 +13,12 @@ class BooksApp extends React.Component {
 
     this.state = {
       books: [],
-      newBooks: [] // Holds books that are added to a shelf.
+      newBooks: [], // Holds books that are added to a shelf.
+      singleBook: "No book"
     }
     this.searchBookApi = this.searchBookApi.bind(this)
     this.updateCategory = this.updateCategory.bind(this)
+    this.getSingleBook = this.getSingleBook.bind(this)
   }
 
   componentDidMount() {
@@ -41,8 +44,16 @@ class BooksApp extends React.Component {
     })
     .catch(err => console.log)
   }
+
+  getSingleBook(book) {
+    // Find a way to render the singleBook Component from this function
+    BooksAPI.get(book.id).then((book) => {
+      this.setState({ singleBook: book})
+      // Should be using the history object to push a different url
+    })
+  }
   render() {
-    const { newBooks, books } = this.state;
+    const { newBooks, books, singleBook } = this.state;
     return (
       <div className="app">
         <Route exact path='/' render={() => (
@@ -52,7 +63,8 @@ class BooksApp extends React.Component {
             </div>
             <BookList
               books={books}
-              updateCategory={this.updateCategory}/>
+              updateCategory={this.updateCategory}
+              grabBook={this.getSingleBook}/>
 
             <div className="open-search">
               <Link to='/search'>Add a Book</Link>
@@ -66,6 +78,13 @@ class BooksApp extends React.Component {
               findBook={this.searchBookApi}
               books={ newBooks }
               updateCategory={this.updateCategory}/>
+          )} />
+        <Route path='/book' render={() => (
+            singleBook.title ? (
+              <SingleBook />
+            ) : (
+              <h1>You will have to select a book</h1>
+            )
           )} />
 
       </div>

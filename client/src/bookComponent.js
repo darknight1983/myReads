@@ -12,7 +12,12 @@ export default class Book extends Component {
       shelfStatus: null
     }
 
+    this.handleGrabBook = this.handleGrabBook.bind(this)
+  }
 
+  handleGrabBook() {
+    const { book, grabBook } = this.props;
+    grabBook(book)
   }
 
   render() {
@@ -22,7 +27,7 @@ export default class Book extends Component {
       <li>
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${coverImg})` }}></div>
+            <div onClick={this.handleGrabBook} className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${coverImg})` }}></div>
             <ShelfChanger changeShelf={this.props.changeShelf} book={book} status={status}/>
           </div>
           <div className="book-title">{this.props.title}</div>

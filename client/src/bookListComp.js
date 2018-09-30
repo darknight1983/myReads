@@ -20,7 +20,7 @@ export default class BookList extends Component {
         title: 'Read'
       }
     ]
-    const { books, updateCategory } = this.props
+    const { books, updateCategory, grabBook } = this.props
     return (
       <div className="list-books-content">
         <div>
@@ -30,7 +30,8 @@ export default class BookList extends Component {
                       key={i}
                       category={category.title}
                       books={shelfBooks}
-                      updateCategory={updateCategory}/>
+                      updateCategory={updateCategory}
+                      grabBook={grabBook}/>
           })}
         </div>
       </div>
