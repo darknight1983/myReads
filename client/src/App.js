@@ -64,7 +64,8 @@ class BooksApp extends React.Component {
         <Route path="/Search" render={() => (
             <SearchComp
               findBook={this.searchBookApi}
-              books={ newBooks }
+              newBooks={ newBooks }
+              oldBooks={ books }
               updateCategory={this.updateCategory}/>
           )} />
 

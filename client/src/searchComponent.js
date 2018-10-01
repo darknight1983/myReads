@@ -29,7 +29,7 @@ export default class SearchComp extends Component {
     this.props.findBook(this.state.searchTerm)
   }
   render() {
-    const { books, updateCategory } = this.props;
+    const { newBooks, oldBooks, updateCategory } = this.props;
 
     return (
       <div className="search-books">
@@ -47,14 +47,15 @@ export default class SearchComp extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {books.length > 0 ? books.map(book => (
+            {newBooks.length > 0 ? newBooks.map(book => (
               <Book
                 key={book.id}
                 book={book}
                 title={book.title}
                 authors={book.authors}
                 imageLinks={book.imageLinks}
-                changeShelf={updateCategory}/>
+                changeShelf={updateCategory}
+                shelf={oldBooks.filter(oldbook => oldbook.id === book.id)}/>
             )) : <li>No books available</li>}
 
           </ol>
