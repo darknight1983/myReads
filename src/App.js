@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
+import { debounce } from 'lodash';
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchComp from './searchComponent';
@@ -14,7 +15,7 @@ class BooksApp extends React.Component {
       books: [],
       newBooks: [] // Holds books that are added to a shelf.
     }
-    this.searchBookApi = this.searchBookApi.bind(this)
+    this.searchBookApi = debounce(this.searchBookApi.bind(this), 300)
     this.updateCategory = this.updateCategory.bind(this)
   }
 

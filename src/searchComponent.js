@@ -1,8 +1,7 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Debounce } from 'react-throttle';
-import { debounce } from 'lodash';
+
 
 import Book from './bookComponent';
 
@@ -15,14 +14,13 @@ export default class SearchComp extends Component {
     }
 
     this.handleSearch = this.handleSearch.bind(this)
-    // Wrap handleRequest with lodash debounce() to update search feature
-    this.handleRequest = debounce(this.handleRequest.bind(this), 300)
 
   }
   handleSearch(e) {
     this.setState({
       searchTerm: e.target.value
     })
+    this.props.findBook(e.target.value)
     console.log(this.state.searchTerm)
   }
   handleRequest(e) {
@@ -41,7 +39,7 @@ export default class SearchComp extends Component {
                  placeholder="Search by title or author"
                  value={this.state.searchTerm}
                  onChange={this.handleSearch}
-                 onKeyPress={this.handleRequest}
+
                  />
           </div>
         </div>
