@@ -26,8 +26,8 @@ class BooksApp extends React.Component {
 
   updateCategory(book, shelf) {
     BooksAPI.update(book, shelf).then(books => {
-      console.log(books)
-      window.location.reload();
+      console.log(this.props.history)
+      window.location.reload('/')
     })
 
   }
