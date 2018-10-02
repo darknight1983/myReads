@@ -28,17 +28,32 @@ class BooksApp extends React.Component {
   updateCategory(book, shelf) {
     BooksAPI.update(book, shelf).then(books => {
       console.log(books)
-      window.location.reload();
+      // Not optimal for performance. Will re-factor soon.
+      BooksAPI.getAll().then(newList => this.setState({ books: newList }))
     })
 
   }
 
+
   searchBookApi(searchTerm) {
-    BooksAPI.search(searchTerm).then((books) => {
-      if (!books.length) {
+    const { books } = this.state;
+    if (!searchTerm) return;
+    BooksAPI.search(searchTerm.trim()).then((matchedBooks) => {
+      if (!matchedBooks.length) {
         this.setState({ newBooks: []})
       }
-      this.setState({ newBooks: books })
+
+      // Compare bookshelf books to results to update shelf status
+      let filtered = matchedBooks.map((book) => {
+        book.shelf = 'none'
+        books.forEach(item => {
+          if (book.id === item.id) {
+            book.shelf = item.shelf;
+          }
+        })
+        return book;
+      })
+      this.setState({ newBooks: filtered })
     })
     .catch(err => console.log)
   }

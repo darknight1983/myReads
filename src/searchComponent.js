@@ -21,7 +21,6 @@ export default class SearchComp extends Component {
       searchTerm: e.target.value
     })
     this.props.findBook(e.target.value)
-    console.log(this.state.searchTerm)
   }
   handleRequest(e) {
     this.props.findBook(this.state.searchTerm)
@@ -52,6 +51,7 @@ export default class SearchComp extends Component {
                 title={book.title}
                 authors={book.authors}
                 imageLinks={book.imageLinks}
+                status={book.shelf}
                 changeShelf={updateCategory}/>
             )) : <li>No books available</li>}
 

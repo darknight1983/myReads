@@ -23,7 +23,7 @@ export default class ShelfChanger extends Component {
 
     return (
       <div className="book-shelf-changer">
-        <select value={status ||this.state.value} onChange={this.handleChange}>
+        <select value={status || this.state.value}  onChange={this.handleChange}>
           <option value="#" disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>

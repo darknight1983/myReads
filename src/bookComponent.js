@@ -36,5 +36,5 @@ export default class Book extends Component {
 Book.propTypes = {
   authors: PropTypes.array,
   title: PropTypes.string.isRequired,
-  imageLinks: PropTypes.array.isRequired
+  imageLinks: PropTypes.object.isRequired
 }
